@@ -25,8 +25,6 @@ jobs:
         version: latest
         platform: x64
     - name: 'Generate compiling configurations'
-      run: |
-      ./autogen.sh
-      ./configure
+      run: ./autogen.sh && ./configure
     - name: 'Make'
       run: make -j$(nproc)
