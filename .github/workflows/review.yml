@@ -20,6 +20,7 @@ jobs:
         gcc-version: [7, 8, 9, 10, 11]
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - uses: egor-tensin/setup-gcc@v1
       with:
         version: latest
