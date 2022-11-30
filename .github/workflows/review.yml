@@ -25,6 +25,8 @@ jobs:
       with:
         version: latest
         platform: x64
+    - name: 'Install dependencies'
+      run: apt update && apt install pkg-config automake autoconf make libsgutils2-dev libudev-dev libpci-dev
     - name: 'Generate compiling configurations'
       run: ./autogen.sh && ./configure
     - name: 'Make'
