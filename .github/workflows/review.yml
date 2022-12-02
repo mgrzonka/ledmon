@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: 'Install gcc'
-      run: sudo apt-get install gcc-${{ gcc-version }} g++-${{ gcc-version }}
+      run: sudo apt-get install gcc-${{ matrix.gcc-version }} g++-${{ matrix.gcc-version }}
     # - uses: egor-tensin/setup-gcc@v1
     #   with:
     #     version: latest
@@ -32,4 +32,4 @@ jobs:
     - name: 'Generate compiling configurations'
       run: ./autogen.sh && ./configure
     - name: 'Make'
-      run: CC=gcc-${{ gcc-version }} CXX=g++-${{ gcc-version }} && make -j$(nproc)
+      run: CC=gcc-${{ matrix.gcc-version }} CXX=g++-${{ matrix.gcc-version }} && make -j$(nproc)
