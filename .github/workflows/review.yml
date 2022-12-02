@@ -21,14 +21,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: 'Add ubuntu repository'
+      run: echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main universe" >> /etc/apt/sources.list
     - name: 'Install gcc'
-      run: sudo apt-get install gcc-${{ matrix.gcc-version }} g++-${{ matrix.gcc-version }}
+      run: sudo apt-get update && sudo apt-get install gcc-${{ matrix.gcc-version }} g++-${{ matrix.gcc-version }}
     # - uses: egor-tensin/setup-gcc@v1
     #   with:
     #     version: latest
     #     platform: x64
     - name: 'Install dependencies'
-      run: sudo apt-get update && sudo apt-get install pkg-config automake autoconf make libsgutils2-dev libudev-dev libpci-dev
+      run: sudo apt-get install pkg-config automake autoconf make libsgutils2-dev libudev-dev libpci-dev
     - name: 'Generate compiling configurations'
       run: ./autogen.sh && ./configure
     - name: 'Make'
